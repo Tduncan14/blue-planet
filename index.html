@@ -8,5 +8,18 @@
 </head>
 <body>
 
+    <canvas id="planet" width="1000" height="1000">
+
+
+    </canvas>
+    <script>
+        //**@ type{HTMLCanvasElement} */
+     var canvas = document.getElementById("planet");
+     var context = canvas.getContext("2d");
+
+     // space for background
+     context.fillStyle="black";
+     context.fillRect(0,0,canvas.width,canvas.height);
+    </script>
 </body>
 </html>
