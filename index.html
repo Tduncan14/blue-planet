@@ -8,12 +8,12 @@
 </head>
 <body>
 
-    <canvas id="planet" width="1000" height="1000">
+    <canvas id="planet" width="700" height="700">
 
 
     </canvas>
     <script>
-        //**@ type{HTMLCanvasElement} */
+        /** @type{HTMLCanvasElement} */
      var canvas = document.getElementById("planet");
      var context = canvas.getContext("2d");
 
@@ -21,14 +21,16 @@
      context.fillStyle="black";
      context.fillRect(0,0,canvas.width,canvas.height);
  
-   //Making the planet 3d effect
-     var gradient = context.createRadialGradient(canvas.width*0.4,canvas.height*0.4,0, canvas.width*0.4,canvas.height*0.4,canvas.width*0.35);
-
-
+   //Making the planet 3d effectR
+   
+        // create a gradient for the planet
+        gradient = context.createRadialGradient(canvas.width * 0.4, canvas.height * 0.4, 0, canvas.width * 0.4, canvas.height * 0.4, canvas.width * 0.35);
+        gradient.addColorStop(0, "blue");
+        gradient.addColorStop(1, "midnightblue");
      // The planet draw
-     context.fillStyle ="blue";
+     context.fillStyle = gradient;
      context.beginPath();
-     context.arc(canvas.width *0.5, canvas.height * 0.5,canvas.width*0.35, 0, Math.PI *2,false);
+     context.arc(canvas.width *0.5, canvas.height * 0.5,canvas.width*0.35, 0, Math.PI*2,false);
      context.fill();
     </script>
 </body>
