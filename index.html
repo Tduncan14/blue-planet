@@ -14,7 +14,8 @@
     </canvas>
     <script>
         /** @type{HTMLCanvasElement} */
-     const numStars = 10;
+     const FPS = 30; // Frame per second
+     const numStars = 300; // stars in the starfield
      const starSpeed = 5; // base speed of stars in pixel per second 
      var canvas = document.getElementById("planet");
      var context = canvas.getContext("2d");
@@ -25,20 +26,52 @@
       var yVelocity = starSpeed * (Math.random() >=0.5 ? 1 : -1);
 
      for( let i = 0; i < numStars ; i++){
-         stars[i] = {
+        var speedMult = Math.random() *3 + 1;
+         
+         stars[i] = {            
              radius: Math.random() * 1.5,
-             x: Math.floor(Math.random() * canvas.width + 1),
-             y: Math.floor(Math.random()* canvas.height + 1),
-             xv:
-             yv:
+             x: Math.floor(Math.random() * canvas.width +1),
+             y: Math.floor(Math.random()* canvas.height +1),
+             xv: xVelocity * speedMult/FPS,
+             yv: yVelocity * speedMult/FPS
          }
      }
+     // Setting up intervals
+
+    setInterval(update,1000/FPS);
+
+    function update(){
 
      // space for background
      context.fillStyle="black";
      context.fillRect(0,0,canvas.width,canvas.height);
  
-  // stars
+
+  // loop over our stars array
+  for( let i = 0; i < numStars; i++){
+      // draw the star
+      context.fillStyle ="white";
+     context.beginPath();
+     context.arc(stars[i].x,stars[i].y,stars[i].radius, 0, Math.PI*2,false);
+     context.fill();
+
+    // updating the positon
+    stars[i].x += stars[i].xv;
+    if(stars[i].x <0){
+        // gone off left of the screen
+        stars[i].x += canvas.width;
+       // reposition to the right of the screen
+    }
+    else if(stars[i].x> canvas.width){
+       // ig it goes off the right of the screen
+       //reposition to the left of the screen
+       stars[i].x -= canvas.width;
+    }
+    // updating the y position
+    stars[i].y += stars[i].yv;
+
+  }
+  
 
    //Making the planet 3d effectR
    
@@ -63,6 +96,7 @@
      context.beginPath();
      context.arc(canvas.width *0.5, canvas.height * 0.5,canvas.width*0.35, 0, Math.PI*2,false);
      context.fill();
+    }
     </script>
 </body>
 </html>
