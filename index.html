@@ -14,13 +14,32 @@
     </canvas>
     <script>
         /** @type{HTMLCanvasElement} */
+     const numStars = 10;
+     const starSpeed = 5; // base speed of stars in pixel per second 
      var canvas = document.getElementById("planet");
      var context = canvas.getContext("2d");
+     var stars = [];
+     
+     // create a star object
+      var xVelocity = starSpeed *(Math.random() >=0.5 ? 1 : -1);
+      var yVelocity = starSpeed * (Math.random() >=0.5 ? 1 : -1);
+
+     for( let i = 0; i < numStars ; i++){
+         stars[i] = {
+             radius: Math.random() * 1.5,
+             x: Math.floor(Math.random() * canvas.width + 1),
+             y: Math.floor(Math.random()* canvas.height + 1),
+             xv:
+             yv:
+         }
+     }
 
      // space for background
      context.fillStyle="black";
      context.fillRect(0,0,canvas.width,canvas.height);
  
+  // stars
+
    //Making the planet 3d effectR
    
 // create a gradient for the aura
