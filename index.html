@@ -69,6 +69,16 @@
     }
     // updating the y position
     stars[i].y += stars[i].yv;
+    if(stars[i].y <0){
+        // gone off left of the screen
+        stars[i].y += canvas.height;
+       // reposition to the right of the screen
+    }
+    else if(stars[i].y> canvas.height){
+       // ig it goes off the right of the screen
+       //reposition to the left of the screen
+       stars[i].y -= canvas.height;
+    }
 
   }
   
@@ -76,9 +86,9 @@
    //Making the planet 3d effectR
    
 // create a gradient for the aura
-    var gradient = context.createRadialGradient(canvas.width * 0.5, canvas.height * 0.5, 0, canvas.width * 0.5, canvas.height * 0.5, canvas.width * 0.5);
+    var gradient = context.createRadialGradient(canvas.width * 0.5, canvas.height * 0.5, canvas.width * 0.25, canvas.width * 0.5, canvas.height * 0.5, canvas.width * 0.5)
      gradient.addColorStop(0, "whitesmoke");
-    gradient.addColorStop(1, "black");
+    gradient.addColorStop(1, "transparent");
         
 // draw the aura
      context.fillStyle = gradient;
